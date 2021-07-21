@@ -99,9 +99,9 @@ def build_model():
     #Gridsearch
     #Takes a while to run (-> reduce the number of parameters to check if code is working properly)
     parameters = {
-        'clf__estimator__n_estimators': [10], #10,20,50
-        'clf__estimator__min_samples_split': [2], #2, 5, 10
-        'clf__estimator__min_samples_leaf' : [1], #1, 2, 4
+        'clf__estimator__n_estimators': [10, 20, 50],
+        'clf__estimator__min_samples_split': [2, 5, 10],
+        'clf__estimator__min_samples_leaf' : [1, 2, 4],
     }
 
     cv = GridSearchCV(pipeline, param_grid=parameters)
