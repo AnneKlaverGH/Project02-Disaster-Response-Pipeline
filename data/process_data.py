@@ -68,6 +68,9 @@ def clean_data(df):
     #Remove nans 
     df.dropna(subset=['request'], inplace=True)
     
+    #Convert all values to binary
+    df = df[df.related != 2]
+    
     return df
     
 def save_data(df, database_filename):
