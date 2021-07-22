@@ -125,8 +125,12 @@ def evaluate_model(model, X_test, Y_test, category_names):
     
     #predict on test data
     Y_pred = model.predict(X_test)
+    Y_pred = pd.DataFrame(Y_pred)
+    Y_pred.columns = category_names
     
-    print(classification_report(np.hstack(Y_test.values), np.hstack(Y_pred), target_names=category_names))
+    for col in category_names:
+        print(col)
+        print(classification_report(Y_test[col], Y_pred[col]))
 
 
 def save_model(model, model_filepath):
@@ -139,9 +143,8 @@ def save_model(model, model_filepath):
     Returns:
     None: model is stored into a pickle file to the specified file path
     """
-    with open(model_filepath, 'wb') as file:  
+    with open(model_filepath, 'wb') as file:
         pickle.dump(model, file)
-
 
 def main():
     if len(sys.argv) == 3:
